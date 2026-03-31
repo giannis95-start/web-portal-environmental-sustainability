@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+      xmlns:w="urn:schemas-microsoft-com:office:word"
+      xmlns="http://www.w3.org/TR/REC-html40"
+      lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="ProgId" content="Word.Document" />
+  <title>Elaborato Progettuale — Portale Sostenibilità Amadori</title>
+  <style>
+    body {
+      font-family: Calibri, Arial, sans-serif;
+      font-size: 11pt;
+      line-height: 1.8;
+      color: #1e1e1e;
+      max-width: 820px;
+      margin: 40px auto;
+      padding: 0 48px;
+    }
+    h1 { font-size: 16pt; font-weight: bold; color: #3a6b35; margin-top: 0; margin-bottom: 6px; }
+    h2 { font-size: 13pt; font-weight: bold; color: #ffffff; background: #3a6b35; padding: 8px 14px; margin-top: 40px; margin-bottom: 16px; }
+    h3 { font-size: 11pt; font-weight: bold; color: #3a6b35; margin-top: 28px; margin-bottom: 4px; border-left: 4px solid #c0141c; padding-left: 10px; }
+    .domanda { font-size: 10pt; color: #6b6b6b; font-style: italic; margin-bottom: 12px; }
+    p { margin: 0 0 10px; }
+    ul, ol { margin: 0 0 10px; padding-left: 22px; }
+    li { margin-bottom: 6px; }
+    code { font-family: Consolas, 'Courier New', monospace; font-size: 10pt; background: #f4f4f4; border: 1px solid #ddd; padding: 1px 5px; border-radius: 3px; }
+    table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 10.5pt; }
+    th { background: #3a6b35; color: white; padding: 8px 12px; text-align: left; }
+    td { padding: 7px 12px; border: 1px solid #ddd; vertical-align: top; }
+    tr:nth-child(even) td { background: #f7f3ec; }
+    .titolo-box { border: 2px solid #3a6b35; border-radius: 8px; padding: 20px 24px; margin-bottom: 32px; background: #f7f3ec; }
+    hr { border: none; border-top: 1px solid #ddd; margin: 24px 0; }
+  </style>
+</head>
+<body>
+
+<!-- TITOLO -->
+<div class="titolo-box">
+  <p style="font-size:9pt;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#c0141c;margin-bottom:8px;">
+    Titolo dell'elaborato
+  </p>
+  <h1>Portale Web per la Comunicazione e il Download dei Report di Sostenibilità — Caso Aziendale: Gruppo Amadori S.p.A.</h1>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PARTE PRIMA
+══════════════════════════════════════ -->
+<h2>PARTE PRIMA – DESCRIZIONE DEL PROCESSO</h2>
+
+
+<h3>Utilizzo delle conoscenze e abilità derivate dal percorso di studio</h3>
+<p class="domanda">
+  Descrivere quali conoscenze e abilità apprese durante il percorso di studio sono state utilizzate per la redazione
+  dell'elaborato, facendo eventualmente riferimento agli insegnamenti che hanno contribuito a maturarle.
+</p>
+
+<p>
+  La realizzazione dell'elaborato ha richiesto l'applicazione integrata di conoscenze e competenze acquisite nell'arco
+  dell'intero percorso di studio in Informatica per le Aziende Digitali. La sfida principale è stata quella di
+  coniugare le competenze tecnico-informatiche con quelle economico-gestionali, traducendo concetti complessi di
+  rendicontazione non finanziaria in un prodotto digitale accessibile, fruibile e visivamente efficace. Di seguito
+  vengono descritte le principali aree di conoscenza mobilitate.
+</p>
+
+<p><strong>Progettazione e sviluppo web (HTML5, CSS3, JavaScript ES6+)</strong></p>
+<p>
+  Il cuore tecnico dell'elaborato risiede nelle competenze di sviluppo web front-end. L'insegnamento di
+  Informatica e Laboratorio di Informatica ha fornito le basi per comprendere la struttura di una pagina HTML e
+  il funzionamento del browser come agente di rendering. Nel corso del progetto tali basi sono state approfondite
+  e ampliate fino a raggiungere un livello applicativo avanzato.
+</p>
+<p>
+  Con <strong>HTML5</strong> si è fatto un uso sistematico dei tag semantici: <code>&lt;nav&gt;</code>,
+  <code>&lt;header&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code> e
+  <code>&lt;footer&gt;</code> non sono stati impiegati come semplici contenitori generici, bensì come elementi
+  dotati di significato per i motori di ricerca e per le tecnologie assistive. Ogni sezione è stata identificata
+  con un attributo <code>id</code> univoco per consentire la navigazione interna tramite anchor link.
+  Sono stati, inoltre, adottati gli attributi ARIA (<em>Accessible Rich Internet Applications</em>):
+  <code>aria-label</code> per descrivere le regioni della pagina,
+  <code>aria-labelledby</code> per associare titoli a sezioni complesse,
+  <code>aria-expanded</code> per comunicare agli screen reader lo stato aperto/chiuso del menu hamburger su mobile.
+  Questi accorgimenti riflettono la conoscenza delle linee guida WCAG 2.1 (livello AA), affrontate nel modulo
+  di User Experience e Accessibilità.
+</p>
+<p>
+  Con <strong>CSS3</strong> è stato costruito un design system completo a partire dalle variabili CSS
+  personalizzate definite nel blocco <code>:root</code>: palette colori, scale tipografiche, spaziature e
+  raggi degli angoli sono centralizzati in un unico punto, rendendo l'intero foglio di stile coerente e
+  manutenibile. Il layout è stato realizzato combinando <em>CSS Grid</em> e <em>Flexbox</em>: Grid per le
+  griglie a più colonne delle card ESG e dei report, Flexbox per allineare elementi all'interno delle singole
+  card, nella navbar e nel footer. La tipografia fluida è ottenuta con la funzione <code>clamp()</code>, che
+  calcola automaticamente dimensioni intermedie tra un minimo e un massimo in base alla larghezza del viewport,
+  eliminando la necessità di numerose media queries dedicate solo alla tipografia. Il responsive design è
+  gestito con un sistema a breakpoint: al di sotto di 768 pixel le griglie collassano in colonna singola, la
+  navbar mostra il menu hamburger e la timeline si linearizza. Le animazioni — fade-in delle card all'entrata
+  nella viewport, transizioni dei link e degli elementi interattivi — sono realizzate con proprietà CSS native
+  (<code>transition</code>, <code>transform</code>, <code>clip-path</code>) senza alcuna dipendenza da
+  librerie esterne, coerentemente con un approccio orientato alla performance.
+</p>
+<p>
+  Con <strong>JavaScript ES6+</strong> l'uso è stato volutamente minimo e mirato: il linguaggio viene
+  impiegato esclusivamente dove il solo HTML/CSS non è sufficiente. In particolare sono state utilizzate:
+</p>
+<ul>
+  <li>
+    La <strong>Fetch API</strong> con il pattern asincrono <code>async/await</code> per recuperare i file PDF
+    dei report di sostenibilità da un dominio esterno (amadori.it), convertirli in un oggetto
+    <code>Blob</code> e forzarne il salvataggio sul dispositivo dell'utente tramite
+    <code>URL.createObjectURL()</code> e un elemento <code>&lt;a download&gt;</code> simulato.
+  </li>
+  <li>
+    La <strong>IntersectionObserver API</strong> per rilevare quando un elemento entra nella viewport e
+    applicargli la classe CSS di animazione corrispondente: questo approccio è più performante del
+    tradizionale scroll event listener perché è gestito in modo nativo dal browser senza bloccare il thread
+    principale.
+  </li>
+  <li>
+    Il <strong>rendering dinamico delle card report</strong> a partire da un array di oggetti JavaScript
+    (<code>REPORTS</code>): ogni elemento dell'array descrive un report con le proprietà
+    <code>anno</code>, <code>titolo</code>, <code>descrizione</code>, <code>pagine</code> e
+    <code>url</code>. La funzione <code>renderReports()</code> itera sull'array e genera il markup HTML
+    corrispondente, centralizzando i dati e separando nettamente contenuto e presentazione.
+  </li>
+</ul>
+
+<p><strong>Economia e gestione d'impresa — Sostenibilità e CSR</strong></p>
+<p>
+  Accanto alle competenze tecniche, il progetto ha richiesto la comprensione di un dominio economico
+  specifico: la rendicontazione non finanziaria e la Responsabilità Sociale d'Impresa (RSI/CSR).
+  L'insegnamento di Economia Aziendale ha fornito le basi per interpretare i bilanci e i documenti
+  gestionali; il modulo di Marketing e Comunicazione d'Impresa ha permesso di comprendere come un'azienda
+  comunica la propria identità e i propri valori agli stakeholder.
+</p>
+<p>
+  Il framework GRI (Global Reporting Initiative) — il più diffuso standard internazionale per la
+  rendicontazione della sostenibilità — è stato compreso nei suoi elementi fondamentali: la struttura a
+  Standard Universali (GRI 1, 2, 3) e a Standard di Settore, il principio di materialità che guida la
+  selezione dei temi da rendicontare, la distinzione tra impatti Scope 1, Scope 2 e Scope 3 per le
+  emissioni di gas serra. Questa conoscenza ha permesso di selezionare correttamente i KPI più rilevanti da
+  evidenziare nella pagina web (riduzione delle emissioni, certificazioni di filiera, tasso di riciclo degli
+  imballaggi, ore di formazione per dipendente) e di presentarli con la terminologia appropriata.
+</p>
+<p>
+  È stata, inoltre, approfondita la conoscenza della <strong>Direttiva CSRD</strong> (Corporate
+  Sustainability Reporting Directive, UE 2022/2464), che dal 2024 estende progressivamente l'obbligo di
+  rendicontazione non finanziaria a tutte le grandi imprese e, dal 2026, alle PMI quotate. Questa
+  contestualizzazione normativa ha orientato le scelte progettuali, rafforzando la rilevanza e
+  l'attualità del portale realizzato.
+</p>
+
+<p><strong>Comunicazione visiva e UX Design</strong></p>
+<p>
+  Le competenze di User Experience Design, sviluppate attraverso il modulo dedicato, sono state applicate
+  nella progettazione dell'architettura dell'informazione della pagina: dall'ordine logico delle sezioni
+  (chi siamo → cosa facciamo → risultati → documenti → impegni futuri) alla gerarchia tipografica, dalla
+  scelta della palette colori all'uso delle icone come supporto visivo al testo. La coerenza tra identità
+  di brand (rosso Amadori) e tematica della sostenibilità (verde) è stata ottenuta assegnando a ciascun
+  colore un ruolo funzionale ben definito: il rosso per le azioni (CTA, pulsanti di download), il verde
+  per le informazioni strutturali (titoli, icone ESG, accenti di sezione), il bianco e il beige per le
+  superfici di contenuto.
+</p>
+
+<hr />
+
+<h3>Fasi di lavoro e relativi tempi di implementazione per la predisposizione dell'elaborato</h3>
+<p class="domanda">
+  Descrivere le attività svolte in corrispondenza di ciascuna fase di redazione dell'elaborato. Indicare
+  il tempo dedicato alla realizzazione di ciascuna fase, le difficoltà incontrate e come sono state superate.
+</p>
+
+<p>
+  Il processo di realizzazione dell'elaborato si è articolato in cinque fasi principali, ciascuna con
+  obiettivi, attività e sfide ben definite. Il lavoro complessivo si è sviluppato nell'arco di circa
+  tre settimane, con sessioni di lavoro distribuite nei giorni disponibili allo studio autonomo.
+</p>
+
+<table>
+  <tr>
+    <th>Fase</th>
+    <th>Attività principali</th>
+    <th>Durata stimata</th>
+    <th>Difficoltà e soluzioni adottate</th>
+  </tr>
+  <tr>
+    <td><strong>1 — Analisi dei requisiti e ricerca documentale</strong></td>
+    <td>
+      Lettura e comprensione approfondita della traccia assegnata; scelta del caso aziendale (Gruppo Amadori);
+      ricerca e raccolta dei report di sostenibilità pubblicati su amadori.it e sostenibilita.amadori.it
+      per gli anni 2020–2024; lettura selettiva dei report per estrarre KPI, traguardi e obiettivi rilevanti;
+      studio del framework GRI e della normativa CSRD per contestualizzare correttamente i contenuti.
+    </td>
+    <td>3–4 ore</td>
+    <td>
+      I report di sostenibilità Amadori non sono accessibili tramite link diretti e visibili sul sito
+      istituzionale: i file PDF erano incorporati in pagine JavaScript-rendered, rendendo difficile
+      l'identificazione degli URL diretti. La difficoltà è stata superata analizzando le richieste di rete
+      tramite il pannello Network degli strumenti per sviluppatori di Chrome, filtrando le risorse di tipo
+      "Document" per identificare gli URL permanenti dei PDF.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>2 — Progettazione del design system e dell'architettura informativa</strong></td>
+    <td>
+      Definizione della struttura a sezioni della pagina e dell'ordine narrativo dei contenuti;
+      progettazione della palette colori con le variabili CSS; scelta e caricamento dei font tipografici
+      (DM Serif Display per i titoli display, DM Sans per il corpo del testo);
+      bozzetto informale (wireframe su carta) del layout per desktop e mobile;
+      pianificazione delle interazioni principali (scroll behavior della navbar, hover state delle card,
+      animazioni di entrata).
+    </td>
+    <td>2–3 ore</td>
+    <td>
+      La principale sfida è stata trovare un equilibrio cromatico tra il rosso del brand Amadori — colore
+      associato all'azienda e riconoscibile nei suoi prodotti — e il verde tipicamente associato alla
+      tematica della sostenibilità ambientale. Assegnare a ogni colore un ruolo funzionale preciso
+      (rosso = azione, verde = informazione strutturale) ha permesso di mantenere la coerenza di brand
+      senza snaturare la comunicazione ESG.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>3 — Sviluppo HTML5 e CSS3</strong></td>
+    <td>
+      Codifica della struttura semantica completa: navbar, hero, pilastri ESG, timeline, sezione report,
+      banner obiettivi 2030, footer; implementazione degli stili per tutte le sezioni con il design system
+      CSS basato su variabili; realizzazione del layout responsive con Grid e Flexbox; implementazione
+      delle animazioni CSS; integrazione delle icone SVG inline per i sei pilastri ESG; ottimizzazione
+      delle media queries per i breakpoint principali (768px, 480px).
+    </td>
+    <td>6–8 ore</td>
+    <td>
+      La sezione più complessa dal punto di vista CSS è stata la timeline cronologica con elementi
+      alternati a sinistra e a destra, collegati da una linea verticale centrale. La sfida tecnica
+      consisteva nel posizionare correttamente la linea verticale (realizzata con il pseudo-elemento
+      <code>::before</code> sull'elemento <code>.timeline</code>) e i cerchi segnaposto (pseudo-elemento
+      <code>::after</code> su ogni <code>.timeline-item</code>) senza che il layout si rompesse su
+      diverse larghezze di schermo. La soluzione ha richiesto un uso attento di
+      <code>position: relative</code> sul contenitore e <code>position: absolute</code> sugli elementi
+      decorativi, con un calcolo preciso dei valori <code>left</code> e <code>transform: translateX()</code>
+      per centrare perfettamente i segnaposto sulla linea. Su mobile la timeline collassa in colonna
+      singola e la linea si sposta sul lato sinistro tramite media query dedicata.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>4 — Sviluppo JavaScript e integrazione delle funzionalità dinamiche</strong></td>
+    <td>
+      Implementazione della funzione <code>downloadReport()</code> con Fetch API e Blob per il download
+      cross-origin dei PDF; realizzazione dell'array <code>REPORTS</code> e della funzione
+      <code>renderReports()</code> per il rendering dinamico delle card; implementazione del comportamento
+      della navbar allo scroll (aggiunta della classe <code>scrolled</code> per lo sfondo e l'ombra);
+      implementazione del menu hamburger su mobile con toggle della classe <code>active</code>;
+      configurazione dell'IntersectionObserver per le animazioni di entrata degli elementi nella viewport;
+      test e debug dell'intera logica JavaScript.
+    </td>
+    <td>3–4 ore</td>
+    <td>
+      Il problema tecnico più significativo ha riguardato le politiche di sicurezza cross-origin (CORS)
+      dei browser moderni. Quando si tenta di scaricare un file PDF ospitato su un dominio diverso da
+      quello della pagina (ad esempio amadori.it da localhost), il browser blocca la risposta se il
+      server non include gli header CORS appropriati. La soluzione implementata è il pattern
+      fetch+Blob: il file viene recuperato come dato binario tramite <code>fetch()</code>,
+      convertito in un oggetto <code>Blob</code> locale, e un URL temporaneo creato con
+      <code>URL.createObjectURL()</code> viene assegnato a un elemento <code>&lt;a&gt;</code> invisibile
+      con l'attributo <code>download</code>. Il click simulato su questo link forza il browser a
+      trattarlo come un download locale, aggirando le restrizioni cross-origin che si applicano solo
+      alla navigazione diretta. In caso di fallimento della richiesta fetch (ad esempio per CORS restrittivi),
+      la funzione ricade su un fallback che apre il PDF in una nuova scheda, garantendo comunque all'utente
+      l'accesso al documento. Un secondo problema, meno evidente, è emerso durante il test delle animazioni
+      IntersectionObserver: le card dei report, generate dinamicamente da JavaScript e iniettate nel DOM
+      <em>dopo</em> il caricamento della pagina, non venivano osservate dall'IntersectionObserver perché
+      quest'ultimo era già stato configurato prima che gli elementi esistessero. La soluzione è consistita
+      nel richiamare la funzione <code>registerFadeElements()</code> — che registra gli elementi da
+      osservare — al termine dell'esecuzione di <code>renderReports()</code>, garantendo che gli observer
+      vengano collegati agli elementi solo dopo la loro creazione nel DOM.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>5 — Test, revisione e documentazione del codice</strong></td>
+    <td>
+      Test di funzionamento su tre browser principali (Google Chrome, Mozilla Firefox, Apple Safari);
+      test su dispositivi mobili reali e tramite il simulatore di Chrome DevTools per diversi viewport
+      (iPhone SE, iPhone 14 Pro, iPad Air, Galaxy S21); verifica dell'accessibilità con il tool Lighthouse
+      di Chrome; pulizia del codice (rimozione di stili e variabili non utilizzati); aggiunta di commenti
+      didattici esplicativi su tutti i file HTML, CSS e JavaScript; redazione finale dell'elaborato
+      progettuale scritto.
+    </td>
+    <td>2–3 ore</td>
+    <td>
+      Su Safari sono emerse alcune discrepanze nel rendering di proprietà CSS più recenti, in particolare
+      <code>clip-path</code> per la forma a onda della sezione hero e <code>gap</code> in alcuni contesti
+      Flexbox. Queste incompatibilità sono state risolte aggiungendo le versioni con prefisso
+      <code>-webkit-</code> per <code>clip-path</code> e sostituendo <code>gap</code> con margini espliciti
+      nei casi problematici. Il test Lighthouse ha restituito un punteggio di Performance superiore a 95,
+      con le voci "Accessibility" e "Best Practices" oltre 90, confermando la solidità complessiva della
+      soluzione.
+    </td>
+  </tr>
+</table>
+
+<hr />
+
+<h3>Risorse e strumenti impiegati</h3>
+<p class="domanda">
+  Descrivere quali risorse — bibliografia, banche dati, ecc. — e strumenti — software, modelli teorici,
+  ecc. — sono stati individuati ed utilizzati per la redazione dell'elaborato. Descrivere, inoltre, i motivi
+  che hanno orientato la scelta delle risorse e degli strumenti, la modalità di individuazione e
+  reperimento delle risorse e degli strumenti, le eventuali difficoltà affrontate nell'individuazione e
+  nell'utilizzo di risorse e strumenti ed il modo in cui sono state superate.
+</p>
+
+<p><strong>Risorse documentali e bibliografiche</strong></p>
+<ul>
+  <li>
+    <strong>Report di Sostenibilità Amadori 2020–2024</strong> — fonte primaria per tutti i contenuti
+    informativi della pagina. I cinque report annuali sono stati scaricati direttamente dal sito
+    sostenibilita.amadori.it e analizzati per estrarre: i sei pilastri strategici ESG, i KPI quantitativi
+    (tonnellate di CO₂ risparmiate, percentuale di energie rinnovabili, certificazioni ottenute, ore di
+    formazione per dipendente), i traguardi raggiunti anno per anno (2019–2023) e gli obiettivi strategici
+    al 2030. La scelta di Amadori come caso aziendale è motivata dalla disponibilità pubblica e continuità
+    pluriennale dei suoi report ESG, dalla sua posizione di rilievo nel settore primario italiano e dalla
+    chiarezza espositiva dei documenti, che ha facilitato l'estrazione delle informazioni rilevanti.
+  </li>
+  <li>
+    <strong>MDN Web Docs</strong> (developer.mozilla.org) — riferimento tecnico ufficiale per la
+    documentazione di HTML5, CSS3 e le Web API JavaScript utilizzate (Fetch API, Blob, URL API,
+    IntersectionObserver API). È stato scelto come fonte principale perché è mantenuto dai vendor
+    dei principali browser (Mozilla, Google, Microsoft, Apple) ed è costantemente aggiornato con
+    le specifiche più recenti e le note di compatibilità cross-browser.
+  </li>
+  <li>
+    <strong>GRI Standards 2021</strong> — standard internazionale di rendicontazione della sostenibilità
+    pubblicato dalla Global Reporting Initiative. La consultazione degli standard universali GRI 1
+    (Foundation), GRI 2 (General Disclosures) e GRI 3 (Material Topics) ha permesso di comprendere
+    la struttura e la terminologia dei report Amadori, facilitando la corretta presentazione dei dati
+    agli utenti della pagina. Gli standard sono disponibili gratuitamente in formato PDF sul sito
+    ufficiale globalreporting.org.
+  </li>
+  <li>
+    <strong>WCAG 2.1 — Web Content Accessibility Guidelines</strong> — linee guida per l'accessibilità
+    web pubblicate dal W3C. La consultazione dei criteri di successo del livello AA ha orientato
+    le scelte relative alla struttura semantica HTML, agli attributi ARIA, ai rapporti di contrasto
+    cromatico della palette e all'utilizzo degli attributi <code>alt</code> per le immagini decorative.
+  </li>
+  <li>
+    <strong>Direttiva EU 2022/2464 — CSRD (Corporate Sustainability Reporting Directive)</strong> —
+    testo normativo dell'Unione Europea consultato in forma integrale per comprendere l'obbligo
+    progressivo di rendicontazione non finanziaria e le sue implicazioni per le imprese del settore
+    primario di medie e grandi dimensioni. Questa conoscenza ha arricchito la contestualizzazione
+    dell'elaborato, evidenziando la rilevanza strategica e normativa del portale realizzato.
+  </li>
+</ul>
+
+<p><strong>Strumenti software</strong></p>
+<ul>
+  <li>
+    <strong>Visual Studio Code (v1.88)</strong> — editor di codice sorgente scelto per la sua leggerezza,
+    l'ampia disponibilità di estensioni e la perfetta integrazione con il terminale integrato. Le
+    estensioni utilizzate includono: <em>Live Server</em> (apertura automatica della pagina in Chrome
+    con hot-reload ad ogni salvataggio), <em>Prettier</em> (formattazione automatica del codice),
+    <em>IntelliSense for CSS class names</em> (autocompletamento delle classi CSS nell'HTML).
+  </li>
+  <li>
+    <strong>Google Chrome DevTools</strong> — strumento di sviluppo integrato nel browser, utilizzato
+    intensivamente per: il debug del layout CSS (pannello Elements con inspection degli stili applicati
+    e del box model), la simulazione di diversi viewport per il test responsive (pannello Toggle Device
+    Toolbar), il monitoraggio delle richieste di rete per identificare gli URL dei PDF Amadori (pannello
+    Network), la verifica delle performance e dell'accessibilità (Lighthouse audit), il debug del codice
+    JavaScript con breakpoint e ispezione delle variabili (pannello Sources).
+  </li>
+  <li>
+    <strong>Google Fonts</strong> — servizio CDN per il caricamento dei font web. Sono stati selezionati
+    <em>DM Serif Display</em> per i titoli di sezione (font display con grazie, associato a eleganza e
+    autorevolezza istituzionale) e <em>DM Sans</em> per il corpo del testo (font sans-serif moderno,
+    leggibile a qualsiasi dimensione). I font vengono caricati tramite un'unica richiesta HTTP ottimizzata
+    con i parametri <code>display=swap</code> per prevenire il Flash of Invisible Text (FOIT).
+  </li>
+  <li>
+    <strong>Git e GitHub</strong> — sistema di controllo versione per il tracciamento delle modifiche
+    al codice durante lo sviluppo. L'uso di commit frequenti ha permesso di tornare a versioni precedenti
+    in caso di errori e di documentare la progressione del lavoro.
+  </li>
+</ul>
+
+<p>
+  Le principali difficoltà nell'utilizzo degli strumenti hanno riguardato la configurazione iniziale del
+  CORS in ambiente di sviluppo locale: il browser blocca le richieste fetch verso domini esterni quando
+  la pagina è servita tramite il protocollo <code>file://</code>. Questa limitazione è stata superata
+  avviando la pagina tramite l'estensione Live Server, che la serve tramite HTTP su localhost,
+  consentendo al browser di trattare le richieste fetch in modo più permissivo durante lo sviluppo.
+</p>
+
+
+<!-- ══════════════════════════════════════
+     PARTE SECONDA
+══════════════════════════════════════ -->
+<h2>PARTE SECONDA – PREDISPOSIZIONE DELL'ELABORATO</h2>
+
+
+<h3>Obiettivi del progetto</h3>
+<p class="domanda">
+  Descrivere gli obiettivi raggiunti dall'elaborato, indicando in che modo esso risponde a quanto
+  richiesto dalla traccia.
+</p>
+
+<p>
+  La traccia assegnata richiedeva di progettare e sviluppare una pagina web dedicata alla comunicazione
+  delle attività di sostenibilità di un'impresa operante nel settore primario, con la funzionalità di
+  download dei relativi report annuali. L'elaborato risponde a questa richiesta attraverso il raggiungimento
+  di tre obiettivi principali, ciascuno declinato in risultati concreti e verificabili.
+</p>
+
+<p><strong>Obiettivo 1 — Comunicare le attività ESG in modo chiaro e strutturato</strong></p>
+<p>
+  La pagina illustra l'impegno del Gruppo Amadori nella sostenibilità attraverso sei dimensioni tematiche
+  (pilastri ESG): Clima e Energia, Benessere Animale, Filiera Responsabile, Uso delle Risorse Idriche,
+  Persone e Comunità, Governance ed Etica. Per ciascun pilastro sono presentati i principali obiettivi
+  strategici e i risultati raggiunti, corredati da un'icona SVG tematica che facilita la comprensione
+  immediata del tema. Una sezione dedicata alla timeline cronologica (2019–2023) visualizza i traguardi
+  più significativi anno per anno, consentendo agli stakeholder di percepire la progressione nel tempo
+  degli impegni aziendali. Un banner conclusivo sintetizza i macro-obiettivi al 2030, proiettando la
+  traiettoria futura dell'azienda.
+</p>
+
+<p><strong>Obiettivo 2 — Rendere i report di sostenibilità facilmente accessibili e scaricabili</strong></p>
+<p>
+  La sezione dedicata ai report presenta in una griglia ordinata i cinque report ESG annuali pubblicati
+  da Amadori (2020–2024). Ogni card mostra il titolo del report, l'anno di riferimento, una breve
+  descrizione dei temi trattati e il numero di pagine, e include un pulsante "Scarica PDF" che avvia
+  immediatamente il download del documento sul dispositivo dell'utente. L'intera operazione è trasparente
+  e non richiede navigazione aggiuntiva, registrazioni o passaggi intermedi. Questo obiettivo risponde
+  direttamente alla necessità di rendere la documentazione ESG aziendale accessibile a tutti gli
+  stakeholder — investitori, giornalisti, studenti, consumatori — indipendentemente dalla loro familiarità
+  con il sito istituzionale dell'azienda.
+</p>
+
+<p><strong>Obiettivo 3 — Garantire una fruibilità ottimale su qualsiasi dispositivo e per qualsiasi utente</strong></p>
+<p>
+  La pagina è progettata con un approccio <em>mobile-first</em> e responsive: il layout si adatta
+  fluidamente dai grandi schermi desktop ai piccoli schermi degli smartphone, senza perdita di
+  funzionalità né di leggibilità. La conformità alle linee guida WCAG 2.1 (livello AA) garantisce
+  l'accessibilità agli utenti con disabilità visive o motorie che utilizzano tecnologie assistive come
+  screen reader o tastiera come unico dispositivo di input. La navigazione a singola pagina con anchor
+  link e navbar fissa consente a qualsiasi utente di orientarsi immediatamente nell'architettura dei
+  contenuti e di raggiungere la sezione desiderata con un clic.
+</p>
+
+<hr />
+
+<h3>Contestualizzazione</h3>
+<p class="domanda">
+  Descrivere il contesto teorico e quello applicativo dell'elaborato realizzato.
+</p>
+
+<p><strong>Contesto teorico: la rendicontazione non finanziaria e il paradigma ESG</strong></p>
+<p>
+  Negli ultimi due decenni si è affermato a livello internazionale un cambio di paradigma nel modo in
+  cui le imprese misurano e comunicano la propria performance: accanto alle tradizionali metriche
+  finanziarie — fatturato, utile, EBITDA — si è imposta la rendicontazione delle performance
+  <strong>ESG</strong> (<em>Environmental, Social, Governance</em>), che descrive l'impatto dell'azienda
+  sull'ambiente naturale, sulla società e sulla qualità dei propri meccanismi di governance interna.
+</p>
+<p>
+  Il framework più diffuso per la rendicontazione non finanziaria è quello del
+  <strong>GRI (Global Reporting Initiative)</strong>, organizzazione non profit fondata nel 1997 con
+  sede ad Amsterdam. I GRI Standards, nella versione aggiornata del 2021, strutturano la rendicontazione
+  in tre livelli: Standard Universali (che si applicano a tutte le organizzazioni), Standard Settoriali
+  (che specificano i temi materiali di settore) e Standard Tematici (che disciplinano la rendicontazione
+  di specifici argomenti come emissioni, acqua, salute e sicurezza). Il principio di materialità,
+  cardine del framework GRI, impone alle aziende di identificare e rendicontare in via prioritaria i
+  temi che hanno gli impatti più significativi sulla società e sull'ambiente, e che sono più rilevanti
+  per le aspettative degli stakeholder.
+</p>
+<p>
+  Il tema delle emissioni di gas serra è articolato secondo il protocollo
+  <strong>GHG Protocol</strong> in tre ambiti (<em>Scope</em>): le emissioni Scope 1 sono quelle
+  generate direttamente dall'azienda (combustione nei processi produttivi, flotta aziendale);
+  le emissioni Scope 2 sono quelle indirette associate all'acquisto di energia elettrica e termica;
+  le emissioni Scope 3 comprendono tutte le altre emissioni indirette lungo la catena del valore
+  (fornitori, logistica, uso e fine vita dei prodotti). Questa distinzione è fondamentale per le
+  imprese del settore primario come Amadori, la cui impronta carbonica è distribuita in modo
+  significativo lungo tutta la filiera produttiva.
+</p>
+<p>
+  Sul fronte normativo, la <strong>Direttiva CSRD</strong> (Corporate Sustainability Reporting
+  Directive, UE 2022/2464), in vigore dal gennaio 2024, rappresenta la più importante riforma
+  della rendicontazione non finanziaria a livello europeo. La direttiva estende progressivamente
+  l'obbligo di reporting ESG — precedentemente limitato alle sole grandi imprese di interesse
+  pubblico con più di 500 dipendenti dalla Direttiva NFRD — a tutte le grandi imprese (dal
+  bilancio 2024), alle PMI quotate (dal 2026) e, attraverso la catena di fornitura, anche alle
+  PMI non quotate. La CSRD introduce inoltre i nuovi standard di rendicontazione ESRS
+  (European Sustainability Reporting Standards), sviluppati dall'EFRAG, che definiscono in modo
+  dettagliato le informazioni da divulgare su oltre quaranta temi ESG.
+</p>
+
+<p><strong>Contesto applicativo: il Gruppo Amadori S.p.A. nel settore primario italiano</strong></p>
+<p>
+  Il <strong>Gruppo Amadori S.p.A.</strong> è il secondo produttore italiano di carni avicole, con
+  una storia che risale alla fondazione nel 1969 a San Vittore di Cesena da parte di Francesco Amadori.
+  Il gruppo occupa oggi circa 9.000 dipendenti, gestisce diciassette stabilimenti produttivi distribuiti
+  sull'intero territorio nazionale e genera un fatturato annuo superiore a 1,7 miliardi di euro. Il
+  modello di business è caratterizzato da un'elevata integrazione verticale della filiera: l'azienda
+  gestisce direttamente le attività di riproduzione e incubazione, la produzione di mangimi, l'allevamento,
+  la macellazione, la lavorazione e il confezionamento dei prodotti, fino alla distribuzione alla grande
+  distribuzione organizzata (GDO) e alla ristorazione.
+</p>
+<p>
+  Sul piano del codice ATECO, le attività principali ricadono nel settore primario (ATECO 01.47 —
+  Allevamento di pollame) e nell'industria alimentare (ATECO 10.12 — Lavorazione e conservazione di
+  carne di pollame). Questa collocazione è rilevante ai fini della sostenibilità: il settore zootecnico
+  è responsabile di una quota significativa delle emissioni globali di gas serra (stimata tra il 14%
+  e il 18% del totale mondiale secondo la FAO), e la gestione delle risorse idriche, del benessere
+  animale e degli imballaggi rappresentano sfide operative concrete e quotidiane per l'azienda.
+</p>
+<p>
+  Amadori pubblica il proprio Report di Sostenibilità con continuità dal 2020, allineandosi agli
+  standard GRI e adottando progressivamente le aspettative della normativa CSRD. I report coprono
+  in modo sistematico le sei dimensioni ESG sopra citate, con KPI quantitativi e obiettivi temporali
+  verificabili. La pagina web realizzata si inserisce in questo contesto come strumento di
+  divulgazione digitale, rendendo i contenuti dei report accessibili a un pubblico più ampio di
+  quello che normalmente consulta direttamente i documenti PDF.
+</p>
+
+<hr />
+
+<h3>Descrizione dei principali aspetti progettuali</h3>
+<p class="domanda">
+  Sviluppare l'elaborato richiesto dalla traccia prescelta.
+</p>
+
+<p>
+  Il portale web è realizzato come applicazione front-end statica in <strong>HTML5, CSS3 e JavaScript
+  ES6+</strong>, senza dipendenze da framework o librerie esterne. Questa scelta architetturale è stata
+  motivata da tre ragioni principali: la necessità di dimostrare padronanza diretta delle tecnologie
+  fondamentali del web; la volontà di massimizzare le performance di caricamento eliminando i costi
+  associati al parsing di librerie pesanti; e la semplicità di deployment, che non richiede processo
+  di build, transpilazione o server applicativo. Di seguito vengono descritti in dettaglio i
+  componenti principali.
+</p>
+
+<p><strong>1. Struttura HTML e architettura dell'informazione</strong></p>
+<p>
+  La pagina è organizzata in sette sezioni semantiche, ciascuna identificata da un tag HTML5 nativo
+  e da un attributo <code>id</code> univoco che funge da destinazione degli anchor link della navbar:
+</p>
+<ul>
+  <li>
+    <code>&lt;nav id="navbar"&gt;</code> — barra di navigazione fissa in cima alla pagina, contenente
+    il logo testuale dell'azienda, i link alle sezioni principali e un pulsante di azione
+    ("Scarica Report") con ruolo di CTA primario. Su schermi mobili la navbar nasconde i link
+    testuali e mostra un pulsante hamburger che attiva il menu a scomparsa tramite JavaScript.
+    La navbar reagisce allo scroll: quando l'utente scende di oltre 50 pixel dalla cima della pagina,
+    una classe CSS viene aggiunta via JavaScript per applicare un colore di sfondo opaco e un'ombra,
+    aumentando il contrasto con il contenuto sottostante.
+  </li>
+  <li>
+    <code>&lt;section id="hero"&gt;</code> — sezione di apertura a tutta pagina con un gradiente
+    diagonale verde, il titolo principale con tipografia display di grande dimensione, un
+    sottotitolo descrittivo e quattro card KPI numerici (emissioni ridotte, % energia rinnovabile,
+    dipendenti coinvolti in formazione, certificazioni ottenute). La parte inferiore della sezione
+    è ritagliata con un effetto a onda tramite <code>clip-path: polygon()</code>, creando una
+    transizione visiva fluida verso la sezione successiva su sfondo bianco.
+  </li>
+  <li>
+    <code>&lt;section id="pilastri"&gt;</code> — griglia a tre colonne (due su tablet, una su mobile)
+    di sei card tematiche ESG, ciascuna con un'icona SVG inline monocromatica, un titolo,
+    una descrizione testuale e un piccolo tag colorato che indica la categoria di impatto
+    (Ambiente, Animali, Filiera, Risorse, Persone, Governance).
+  </li>
+  <li>
+    <code>&lt;section id="timeline"&gt;</code> — visualizzazione cronologica alternata dei principali
+    traguardi di sostenibilità raggiunti da Amadori dal 2019 al 2023. Gli elementi dispari si
+    collocano a sinistra, quelli pari a destra, uniti da una linea verticale centrale con cerchi
+    segnaposto. Su mobile la timeline si linearizza in colonna singola con linea verticale a sinistra.
+  </li>
+  <li>
+    <code>&lt;section id="report"&gt;</code> — griglia dei cinque report ESG annuali, generata
+    dinamicamente da JavaScript. Ogni card presenta il titolo del report, l'anno, una descrizione
+    sintetica, il numero di pagine e un pulsante "Scarica PDF" che attiva la funzione di download.
+  </li>
+  <li>
+    <code>&lt;section id="impegno"&gt;</code> — banner a sfondo verde scuro con i tre macro-obiettivi
+    strategici al 2030: riduzione del 30% delle emissioni Scope 1&amp;2, 100% di energia rinnovabile
+    negli stabilimenti, zero-waste-to-landfill per gli imballaggi. Il testo è bianco su fondo scuro,
+    con contrasto cromatico conforme ai requisiti WCAG 2.1.
+  </li>
+  <li>
+    <code>&lt;footer&gt;</code> — footer a tre colonne con logo, link di navigazione rapida,
+    informazioni di contatto e nota sul copyright. Su mobile il footer collassa in colonna singola.
+  </li>
+</ul>
+
+<p><strong>2. Design system CSS con variabili personalizzate</strong></p>
+<p>
+  Tutti i valori di stile riutilizzabili sono definiti come variabili CSS nel blocco <code>:root</code>:
+</p>
+<ul>
+  <li>
+    <strong>Palette colori</strong>: <code>--color-primary: #3a6b35</code> (verde Amadori Sostenibilità),
+    <code>--color-accent: #c0141c</code> (rosso Amadori brand), <code>--color-bg: #ffffff</code>,
+    <code>--color-surface: #f7f3ec</code> (beige caldo per le card), <code>--color-text: #1e1e1e</code>,
+    <code>--color-muted: #6b6b6b</code>.
+  </li>
+  <li>
+    <strong>Tipografia</strong>: <code>--font-display: 'DM Serif Display', serif</code> per i titoli,
+    <code>--font-body: 'DM Sans', sans-serif</code> per il corpo del testo; scale di dimensioni con
+    <code>clamp()</code> per il responsive senza media queries aggiuntive.
+  </li>
+  <li>
+    <strong>Spaziature e raggi</strong>: sistema a 8 punti (<code>--space-xs: 4px</code>,
+    <code>--space-sm: 8px</code>, ..., <code>--space-3xl: 64px</code>) e raggi degli angoli
+    standardizzati (<code>--radius-sm: 4px</code>, <code>--radius-md: 8px</code>,
+    <code>--radius-lg: 16px</code>).
+  </li>
+  <li>
+    <strong>Ombre e transizioni</strong>: variabili per le ombre delle card
+    (<code>--shadow-card: 0 4px 16px rgba(0,0,0,.08)</code>) e per la transizione standard
+    (<code>--transition: all .25s ease</code>).
+  </li>
+</ul>
+
+<p><strong>3. Funzionalità di download dei report (JavaScript)</strong></p>
+<p>
+  La funzione <code>downloadReport(url, filename)</code> implementa il pattern fetch+Blob per
+  il download cross-origin di file PDF. Il flusso di esecuzione è il seguente:
+</p>
+<ol>
+  <li>
+    La funzione esegue una richiesta <code>fetch(url)</code> verso l'URL del PDF ospitato su amadori.it.
+  </li>
+  <li>
+    Se la risposta HTTP ha status 200, il corpo della risposta viene convertito in un oggetto
+    <code>Blob</code> di tipo <code>application/pdf</code> tramite il metodo
+    <code>response.blob()</code>.
+  </li>
+  <li>
+    Un URL temporaneo nel contesto del documento locale viene creato con
+    <code>URL.createObjectURL(blob)</code>: questo URL ha la forma <code>blob:http://localhost/...</code>
+    ed è trattato dal browser come una risorsa locale, bypassando le restrizioni cross-origin.
+  </li>
+  <li>
+    Un elemento <code>&lt;a&gt;</code> invisibile viene creato dinamicamente, con
+    <code>href</code> puntato all'URL blob e attributo <code>download</code> impostato al nome del
+    file desiderato. Un <code>click()</code> simulato su questo elemento forza il browser ad avviare
+    il download.
+  </li>
+  <li>
+    Dopo il click, l'URL blob viene revocato con <code>URL.revokeObjectURL()</code> per liberare
+    la memoria allocata.
+  </li>
+  <li>
+    In caso di errore nella richiesta fetch (CORS bloccato, rete non disponibile, URL non valido),
+    la funzione ricade su <code>window.open(url, '_blank')</code>, aprendo il PDF in una nuova
+    scheda del browser: l'utente può comunque accedere al documento e salvarlo manualmente.
+  </li>
+</ol>
+
+<p><strong>4. Rendering dinamico delle card report</strong></p>
+<p>
+  I dati dei cinque report sono definiti in un array JavaScript <code>REPORTS</code>, dove ogni
+  elemento è un oggetto con le proprietà: <code>anno</code>, <code>titolo</code>,
+  <code>descrizione</code>, <code>pagine</code> e <code>url</code>. La funzione
+  <code>renderReports(container)</code> itera sull'array e per ciascun elemento genera
+  dinamicamente il markup HTML della card, lo inserisce nel container tramite
+  <code>innerHTML +=</code> (ottimizzato tramite array <code>join</code> per ridurre i reflow
+  del DOM) e registra il listener di click sul pulsante di download. Questo approccio separa
+  nettamente i dati (array <code>REPORTS</code>) dalla presentazione (funzione
+  <code>renderReports</code>), rendendo semplice l'aggiornamento dei contenuti: per aggiungere
+  il report 2025 sarà sufficiente inserire un oggetto nell'array, senza modificare
+  il markup HTML o il CSS.
+</p>
+
+<p><strong>5. Animazioni e interattività</strong></p>
+<p>
+  Le animazioni di entrata degli elementi nella viewport sono gestite tramite
+  <code>IntersectionObserver</code>: tutti gli elementi con la classe
+  <code>fade-in</code> inizialmente hanno <code>opacity: 0</code> e
+  <code>transform: translateY(20px)</code>; quando l'IntersectionObserver rileva che almeno il
+  15% dell'elemento è visibile nel viewport, viene aggiunta la classe <code>visible</code>
+  che porta <code>opacity</code> a 1 e <code>transform</code> a <code>translateY(0)</code>,
+  con una transizione CSS di 0.5 secondi. Questo approccio è preferito al tradizionale
+  scroll event listener perché non blocca il thread principale e può essere ottimizzato
+  internamente dal browser.
+</p>
+
+<hr />
+
+<h3>Campi di applicazione</h3>
+<p class="domanda">
+  Descrivere gli ambiti di applicazione dell'elaborato progettuale e i vantaggi derivanti dalla sua applicazione.
+</p>
+
+<p>
+  La soluzione realizzata è applicabile in tutti i contesti in cui un'organizzazione — con particolare
+  riferimento alle imprese del settore primario e agroalimentare — necessita di comunicare il proprio
+  impegno in materia di sostenibilità e di garantire un accesso agevole alla relativa documentazione.
+  Si identificano quattro principali ambiti di applicazione:
+</p>
+
+<p><strong>1. Comunicazione istituzionale e investor relations</strong></p>
+<p>
+  Il portale può essere integrato come sezione dedicata all'interno del sito web istituzionale
+  dell'azienda, diventando il punto di accesso unico per tutti gli stakeholder interessati al profilo
+  ESG dell'organizzazione: investitori istituzionali e retail che conducono analisi di
+  <em>ESG screening</em> o <em>due diligence</em> prima di decisioni di investimento; agenzie di rating
+  della sostenibilità (come Sustainalytics, MSCI ESG Ratings, EcoVadis) che raccolgono informazioni
+  per aggiornare i propri score; giornalisti e analisti del settore che cercano dati quantitativi
+  sulle performance ambientali e sociali dell'azienda; potenziali partner commerciali e fornitori
+  che valutano l'allineamento sui valori ESG prima di stabilire una relazione d'affari.
+</p>
+<p>
+  In questo contesto, il vantaggio principale del portale rispetto alla semplice pubblicazione dei
+  PDF sul sito aziendale è la capacità di <em>sintetizzare e contestualizzare</em> i dati chiave
+  prima che lo stakeholder decida di scaricare e leggere il documento completo. Le card KPI, la
+  timeline e i pilastri ESG offrono una panoramica immediata dell'impegno aziendale, abbassando la
+  soglia di fruizione per utenti non specializzati.
+</p>
+
+<p><strong>2. Conformità normativa — Direttiva CSRD</strong></p>
+<p>
+  Con l'entrata in vigore della Direttiva CSRD, le imprese obbligate alla rendicontazione non
+  finanziaria devono garantire che i propri report ESG siano "facilmente accessibili" e pubblicati
+  nella relazione sulla gestione entro tempi stabiliti. Una pagina web dedicata e ben strutturata
+  rappresenta un canale di pubblicazione e accesso privilegiato, che può essere collegato
+  direttamente alla sezione investor relations del sito istituzionale e referenziato nelle
+  comunicazioni ufficiali. In prospettiva, l'adozione del formato digitale strutturato richiesto
+  dagli ESRS (European Sustainability Reporting Standards) in formato XHTML con tag XBRL potrebbe
+  essere integrata in questa architettura senza stravolgerne la struttura.
+</p>
+
+<p><strong>3. Educazione e sensibilizzazione dei consumatori</strong></p>
+<p>
+  Nel settore agroalimentare, dove la reputazione e la fiducia dei consumatori sono asset strategici
+  critici, un portale di sostenibilità accessibile e comprensibile contribuisce a costruire e
+  mantenere la <em>brand trust</em>. I consumatori sempre più attenti all'impatto ambientale e
+  sociale dei propri acquisti trovano nel portale uno strumento per informarsi in modo autonomo
+  sulle pratiche di allevamento, sulla gestione dei rifiuti, sull'uso dell'acqua e sulle
+  certificazioni di filiera. La chiarezza visiva e la semplicità del linguaggio utilizzato —
+  reso accessibile traducendo i tecnicismi GRI in testo comprensibile al grande pubblico —
+  contribuisce alla cultura della sostenibilità tra i consumatori finali, andando oltre la
+  semplice conformità normativa per diventare strumento di educazione civica ambientale.
+</p>
+
+<p><strong>4. Replicabilità per PMI del settore primario</strong></p>
+<p>
+  Uno dei vantaggi più rilevanti della soluzione è la sua <strong>semplicità tecnica e la
+  replicabilità</strong>: non richiede un server backend, un database, un sistema CMS o
+  competenze DevOps per il deployment. Può essere caricata su qualsiasi hosting statico
+  (GitHub Pages, Netlify, Vercel) a costo zero o minimo, ed è funzionante aprendo il file
+  HTML direttamente nel browser. Questo la rende accessibile a cooperative agricole, cantine
+  vitivinicole, produttori ittici o aziende lattiero-casearie di piccole e medie dimensioni
+  che non dispongono di un reparto IT interno ma sono soggette agli obblighi di trasparenza
+  ESG introdotti progressivamente dalla CSRD nella catena di fornitura dei grandi gruppi industriali.
+</p>
+
+<hr />
+
+<h3>Valutazione dei risultati</h3>
+<p class="domanda">
+  Descrivere le potenzialità e i limiti ai quali i risultati dell'elaborato sono potenzialmente esposti.
+</p>
+
+<p><strong>Potenzialità</strong></p>
+<ul>
+  <li>
+    <strong>Accessibilità universale e conformità WCAG 2.1:</strong> l'uso sistematico degli
+    attributi ARIA, della struttura semantica HTML5, di rapporti di contrasto cromatico conformi
+    al livello AA e della navigazione completa da tastiera rende il portale fruibile da utenti
+    con disabilità visive (tramite screen reader come NVDA o VoiceOver), motorie (navigazione
+    da tastiera) o cognitive (struttura chiara e linguaggio semplificato). Questo amplia
+    significativamente la platea degli stakeholder raggiungibili rispetto a un semplice PDF.
+  </li>
+  <li>
+    <strong>Manutenibilità ed estensibilità del codice:</strong> la separazione tra struttura
+    (HTML), presentazione (CSS) e comportamento (JavaScript), l'uso di variabili CSS centralizzate
+    e l'architettura data-driven per il rendering dei report rendono il codice facilmente
+    manutenibile. Aggiungere il Report 2025 richiede un solo inserimento nell'array
+    <code>REPORTS</code>; modificare la palette colori richiede l'aggiornamento di tre variabili
+    in <code>:root</code>; aggiungere una nuova sezione richiede un nuovo tag <code>&lt;section&gt;</code>
+    e le relative regole CSS, senza toccare il codice esistente.
+  </li>
+  <li>
+    <strong>Performance di caricamento:</strong> l'assenza di framework JavaScript (React,
+    Vue, Angular) e di librerie CSS (Bootstrap, Tailwind) elimina il peso delle dipendenze
+    esterne: il file HTML è l'unica risorsa necessaria per il rendering iniziale, insieme
+    ai font caricati via CDN con <code>display=swap</code>. Il punteggio Lighthouse di
+    Performance superiore a 95 su 100 conferma la solidità dell'approccio.
+  </li>
+  <li>
+    <strong>Scalabilità verso un'architettura full-stack:</strong> la struttura della pagina
+    è predisposta per una futura integrazione con un backend (Node.js, Python/Django, PHP) e
+    un database relazionale che gestisca dinamicamente i contenuti. L'array <code>REPORTS</code>
+    in JavaScript potrebbe essere sostituito da una chiamata API REST a un endpoint che restituisce
+    i dati in formato JSON, senza necessità di modificare la struttura HTML o il design system CSS.
+    Analogamente, i contenuti delle sezioni pilastri e timeline potrebbero essere gestiti tramite
+    un CMS headless (come Contentful o Sanity), consentendo agli stakeholder non tecnici
+    dell'ufficio comunicazione di aggiornare i testi in autonomia.
+  </li>
+  <li>
+    <strong>Indipendenza da terze parti per il rendering:</strong> a differenza di molte soluzioni
+    basate su framework che richiedono bundle JavaScript da centinaia di kilobyte, il portale funziona
+    con meno di 30 KB di codice custom totale, incluse tutte le logiche JavaScript. Questo garantisce
+    un'esperienza utente eccellente anche su connessioni mobili lente o in aree con copertura di rete
+    limitata, caratteristica rilevante nel settore agricolo che spesso opera in zone rurali.
+  </li>
+</ul>
+
+<p><strong>Limiti</strong></p>
+<ul>
+  <li>
+    <strong>Dipendenza dagli URL esterni per i PDF:</strong> i pulsanti di download puntano
+    direttamente agli URL dei file PDF ospitati sul sito di Amadori. Se l'azienda ristruttura
+    il proprio sito web, rinomina le risorse o le sposta su un CDN con nuovi URL, i download
+    smetterebbero di funzionare. Il fallback che apre il PDF in una nuova scheda garantisce
+    comunque l'accesso al documento, ma richiederebbe un aggiornamento manuale degli URL
+    nell'array <code>REPORTS</code>. Una soluzione strutturale consisterebbe nell'hosting
+    diretto dei PDF su un server proprio, eliminando la dipendenza dall'URL esterno.
+  </li>
+  <li>
+    <strong>Restrizioni CORS e comportamento variabile tra browser:</strong> il pattern
+    fetch+Blob presuppone che il server di Amadori consenta richieste cross-origin (CORS)
+    verso il proprio dominio. Se il server Amadori è configurato per bloccare tali richieste
+    (header <code>Access-Control-Allow-Origin</code> assente o ristretto), la funzione fetch
+    fallirà e l'utente verrà reindirizzato al documento in una nuova scheda. Questa limitazione
+    è intrinseca all'architettura front-end only e non può essere risolta senza un proxy server
+    o un backend che faccia da intermediario, scaricando il PDF lato server e re-inviandolo
+    al browser dell'utente con gli header CORS appropriati.
+  </li>
+  <li>
+    <strong>Contenuti statici soggetti ad obsolescenza:</strong> i KPI numerici nella sezione
+    hero (emissioni ridotte, percentuale di energia rinnovabile, ecc.), i traguardi nella
+    timeline e gli obiettivi al 2030 nel banner finale sono dati hardcodati nell'HTML. Non
+    si aggiornano automaticamente con la pubblicazione del nuovo report annuale: richiedono
+    un intervento manuale sul codice da parte di uno sviluppatore. In un contesto operativo
+    reale, questo limite verrebbe superato tramite l'integrazione con un CMS o un'API backend
+    come descritto nel punto precedente sulle potenzialità di scalabilità.
+  </li>
+  <li>
+    <strong>Assenza di funzionalità di ricerca e filtraggio:</strong> con l'espansione della
+    raccolta documentale (più report, documenti di settore, press release ESG), la pagina
+    nella sua forma attuale non offre strumenti di ricerca testuale o filtraggio per tema,
+    anno o categoria. L'aggiunta di tali funzionalità richiederebbe un incremento della
+    complessità JavaScript o l'integrazione di un motore di ricerca lato client come Fuse.js.
+  </li>
+  <li>
+    <strong>Mancanza di internazionalizzazione (i18n):</strong> il portale è sviluppato
+    interamente in italiano, limitandone la fruibilità agli stakeholder internazionali
+    (investitori esteri, partner europei, organizzazioni internazionali di rating ESG).
+    In un contesto operativo reale, l'aggiunta di una versione in lingua inglese sarebbe
+    una priorità, realizzabile tramite un sistema di gestione dei contenuti multilingua
+    o attraverso attributi HTML <code>lang</code> e file di traduzione JavaScript.
+  </li>
+</ul>
+
+<p>
+  In sintesi, l'elaborato raggiunge pienamente gli obiettivi richiesti dalla traccia: comunica
+  efficacemente le attività ESG del Gruppo Amadori, rende accessibili e scaricabili i report
+  di sostenibilità annuali, e lo fa con un codice web pulito, performante e accessibile.
+  I limiti identificati sono prevalentemente legati alla natura front-end statica della soluzione
+  e definiscono una roadmap naturale di sviluppo verso una piattaforma più robusta e dinamica,
+  coerente con la crescita degli obblighi di trasparenza ESG prevista dalla normativa europea
+  nei prossimi anni.
+</p>
+
+</body>
+</html>

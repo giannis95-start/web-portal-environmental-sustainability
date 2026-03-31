@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="it">
+<!--
+  =============================================================
+  AMADORI SOSTENIBILITÀ — index.html
+  Pagina principale del portale di sostenibilità Gruppo Amadori
+
+  Struttura sezioni:
+    1. <nav>                  Navbar fissa con logo e navigazione
+    2. <section id="hero">    Hero con titolo, CTA e 4 statistiche chiave
+    3. <section id="pilastri"> Sei pilastri ESG (griglia di card)
+    4. <section id="timeline"> Traguardi cronologici 2019–2023
+    5. <section id="report">  Download report ESG (generato via JS)
+    6. <section id="impegno"> Banner Impegno 2030
+    7. <footer>               Footer con link e copyright
+
+  File collegati:
+    css/style.css  →  stile principale (layout, colori, animazioni)
+    js/main.js     →  dati report, download PDF, rendering card, navbar, animazioni
+
+  Font (Google Fonts):
+    DM Serif Display  →  titoli e heading
+    DM Sans           →  corpo testo e UI
+  =============================================================
+-->
+<head>
+  <meta charset="UTF-8" />
+  <!-- Viewport per responsive design mobile-first -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Meta descrizione per SEO -->
+  <meta
+    name="description"
+    content="Scopri gli impegni di sostenibilità del Gruppo Amadori:
+             clima, benessere animale, filiera, risorse, persone e governance."
+  />
+  <title>Sostenibilità — Gruppo Amadori</title>
+
+  <!-- ─── Google Fonts ─────────────────────────────────────────────
+       Preconnect riduce il tempo di handshake con i server Google.
+       DM Serif Display: elegante per i titoli (variante italic inclusa)
+       DM Sans: leggibile e moderno per il corpo testo
+  ──────────────────────────────────────────────────────────────── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Foglio di stile principale -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <!-- ================================================================
+       NAVBAR
+       Barra di navigazione fissa in cima alla pagina (position: fixed).
+       JavaScript aggiunge la classe .scrolled dopo 80px di scroll,
+       cambiando lo sfondo da trasparente a bianco con ombra.
+       Il pulsante #navToggle apre/chiude il menu su mobile.
+  ================================================================ -->
+  <nav id="navbar" role="navigation" aria-label="Navigazione principale">
+    <div class="nav-container">
+
+      <!-- Logo: placeholder testuale – sostituire con <img src="assets/logo-amadori.svg"> -->
+      <a href="#hero" class="nav-logo" aria-label="Gruppo Amadori – torna all'inizio">
+        <span class="logo-icon" aria-hidden="true">A</span>
+        <span class="logo-text">Amadori</span>
+      </a>
+
+      <!-- Hamburger button: visibile solo su mobile (< 768px) via CSS -->
+      <button
+        class="nav-toggle"
+        id="navToggle"
+        aria-label="Apri menu di navigazione"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+      </button>
+
+      <!-- Elenco dei link di navigazione -->
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="#pilastri" class="nav-link">Pilastri ESG</a></li>
+        <li><a href="#timeline" class="nav-link">Traguardi</a></li>
+        <li><a href="#report"   class="nav-link">Report</a></li>
+        <li><a href="#impegno"  class="nav-link">Impegno 2030</a></li>
+        <!-- CTA nella navbar: evidenziata come pulsante -->
+        <li>
+          <a href="#report" class="nav-cta">Scarica Report</a>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+
+
+  <!-- ================================================================
+       HERO
+       Prima sezione visibile: impatto grafico forte con sfondo scuro.
+       Contiene: etichetta, titolo h1, sottotitolo, CTA e 4 KPI numerici.
+       Lo sfondo è un gradiente CSS (sostituibile con un'immagine reale).
+  ================================================================ -->
+  <section id="hero" aria-labelledby="hero-title">
+
+    <!-- Overlay semitrasparente per garantire leggibilità del testo -->
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-content fade-up">
+      <!-- Etichetta decorativa sopra il titolo principale -->
+      <span class="hero-label">Gruppo Amadori</span>
+
+      <!-- h1: un solo h1 per pagina, migliore per SEO e accessibilità -->
+      <h1 id="hero-title" class="hero-title">
+        La Sostenibilità<br />
+        <em>al Centro del Futuro</em>
+      </h1>
+
+      <p class="hero-subtitle">
+        Dal benessere animale alla riduzione delle emissioni,<br />
+        dalle persone alla governance: il nostro impegno concreto
+        verso un'Italia più sostenibile.
+      </p>
+
+      <!-- CTA principale: ancora verso la sezione download -->
+      <a href="#report" class="btn btn-primary">
+        <!-- Icona SVG inline: indipendente da file esterni, scalabile -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20" height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Scarica i Report ESG
+      </a>
+    </div>
+
+    <!-- Griglia delle 4 statistiche chiave in fondo al hero -->
+    <div class="hero-stats" role="list" aria-label="Statistiche chiave di sostenibilità">
+
+      <div class="stat-card fade-up" role="listitem">
+        <span class="stat-number" aria-label="meno 30 percento">-30%</span>
+        <span class="stat-label">Emissioni CO₂<br />rispetto al 2019</span>
+      </div>
+
+      <div class="stat-card fade-up" role="listitem">
+        <span class="stat-number">85%</span>
+        <span class="stat-label">Energia da fonti<br />rinnovabili</span>
+      </div>
+
+      <div class="stat-card fade-up" role="listitem">
+        <span class="stat-number">18M</span>
+        <span class="stat-label">Animali nella filiera<br />controllata</span>
+      </div>
+
+      <div class="stat-card fade-up" role="listitem">
+        <span class="stat-number">100%</span>
+        <span class="stat-label">Packaging riciclabile<br />entro il 2025</span>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       PILASTRI DI SOSTENIBILITÀ
+       Sei card tematiche che coprono le aree Environment, Social, Governance.
+       Ogni card ha: icona SVG inline, titolo h3, testo descrittivo, KPI badge.
+       Layout: griglia CSS a 3 colonne su desktop, 1 su mobile.
+  ================================================================ -->
+  <section id="pilastri" aria-labelledby="pilastri-title">
+
+    <div class="section-header fade-up">
+      <span class="section-tag">Il Nostro Approccio</span>
+      <h2 id="pilastri-title">I Sei Pilastri ESG</h2>
+      <p class="section-intro">
+        Ogni pilastro rappresenta un'area strategica in cui Amadori misura,
+        monitora e migliora continuamente il proprio impatto ambientale e sociale.
+      </p>
+    </div>
+
+    <div class="pillars-grid" role="list">
+
+      <!-- ── CARD 1: CLIMA ────────────────────────────────────────── -->
+      <article class="pillar-card fade-up" role="listitem" aria-labelledby="pillar-clima">
+        <!-- Icona verde: tema ambiente/clima -->
+        <div class="card-icon card-icon--green" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+               viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8
+                     0 5.5-4.78 10-10 10Z"/>
+            <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+          </svg>
+        </div>
+        <h3 id="pillar-clima" class="card-title">Clima</h3>
+        <p class="card-text">
+          Riduciamo le emissioni di gas serra lungo tutta la catena del valore,
+          con obiettivi allineati agli Accordi di Parigi e investimenti in
+          efficienza energetica e fonti rinnovabili.
+        </p>
+        <span class="card-kpi">-30% CO₂ al 2023</span>
+      </article>
+
+      <!-- ── CARD 2: BENESSERE ANIMALE ────────────────────────────── -->
+      <article class="pillar-card fade-up" role="listitem" aria-labelledby="pillar-benessere">
+        <!-- Icona rossa: cuore/cura -->
+        <div class="card-icon card-icon--red" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+               viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06
+                     a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78
+                     1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </div>
+        <h3 id="pillar-benessere" class="card-title">Benessere Animale</h3>
+        <p class="card-text">
+          Standard elevati di allevamento, monitoraggio continuo delle condizioni
+          di vita degli animali e protocolli certificati da enti terzi indipendenti.
+        </p>
+        <span class="card-kpi">100% allevamenti certificati</span>
+      </article>
+
+      <!-- ── CARD 3: FILIERA RESPONSABILE ─────────────────────────── -->
+      <article class="pillar-card fade-up" role="listitem" aria-labelledby="pillar-filiera">
+        <div class="card-icon card-icon--green" aria-hidden="true">
+          <!-- Icona frecce intrecciate: supply chain -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+               viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 3 21 3 21 8"/>
+            <line x1="4" y1="20" x2="21" y2="3"/>
+            <polyline points="21 16 21 21 16 21"/>
+            <line x1="15" y1="15" x2="21" y2="21"/>
+            <line x1="4" y1="4" x2="9" y2="9"/>
+          </svg>
+        </div>
+        <h3 id="pillar-filiera" class="card-title">Filiera Responsabile</h3>
+        <p class="card-text">
+          Tracciabilità al 100% dalla mangimistica all'allevamento, fino alla
+          distribuzione. Collaboriamo con fornitori che condividono i nostri
+          valori etici e ambientali.
+        </p>
+        <span class="card-kpi">18M animali tracciati</span>
+      </article>
+
+      <!-- ── CARD 4: USO DELLE RISORSE ────────────────────────────── -->
+      <article class="pillar-card fade-up" role="listitem" aria-labelledby="pillar-risorse">
+        <div class="card-icon card-icon--green" aria-hidden="true">
+          <!-- Icona goccia: acqua/risorse -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+               viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+          </svg>
+        </div>
+        <h3 id="pillar-risorse" class="card-title">Uso delle Risorse</h3>
+        <p class="card-text">
+          Gestione responsabile di acqua, energia e materiali. Investiamo in
+          impianti di recupero e riciclo per azzerare progressivamente i
+          rifiuti di produzione.
+        </p>
+        <span class="card-kpi">-25% consumo idrico</span>
+      </article>
+
+      <!-- ── CARD 5: PERSONE & COMUNITÀ ───────────────────────────── -->
+      <article class="pillar-card fade-up" role="listitem" aria-labelledby="pillar-persone">
+        <!-- Icona rossa: persone/comunità -->
+        <div class="card-icon card-icon--red" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+               viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <h3 id="pillar-persone" class="card-title">Persone &amp; Comunità</h3>
+        <p class="card-text">
+          Sicurezza sul lavoro, formazione continua, parità di genere e welfare
+          aziendale per i nostri 9.000 dipendenti. Supportiamo le comunità
+          locali dove operiamo.
+        </p>
+        <span class="card-kpi">9.000 dipendenti diretti</span>
+      </article>
+
+      <!-- ── CARD 6: GOVERNANCE & ETICA ───────────────────────────── -->
+      <article class="pillar-card fade-up" role="listitem" aria-labelledby="pillar-governance">
+        <div class="card-icon card-icon--green" aria-hidden="true">
+          <!-- Icona scudo: governance/protezione -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+               viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3 id="pillar-governance" class="card-title">Governance &amp; Etica</h3>
+        <p class="card-text">
+          Trasparenza nella rendicontazione, codice etico aziendale, organi di
+          controllo indipendenti e piena aderenza agli standard internazionali
+          GRI e SASB.
+        </p>
+        <span class="card-kpi">Report GRI dal 2021</span>
+      </article>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       TIMELINE DEI TRAGUARDI — 2019 → 2023
+       Disposizione alternata sinistra/destra su desktop (CSS position).
+       Su mobile collassa in lista verticale a colonna singola.
+       La linea centrale è un pseudo-elemento ::before del contenitore.
+  ================================================================ -->
+  <section id="timeline" aria-labelledby="timeline-title">
+    <div class="container">
+
+      <div class="section-header fade-up">
+        <span class="section-tag">Percorso nel tempo</span>
+        <h2 id="timeline-title">I Nostri Traguardi</h2>
+        <p class="section-intro">
+          Cinque anni di impegni concreti e risultati misurabili.
+        </p>
+      </div>
+
+      <!-- Il ::before di .timeline crea la linea verticale centrale -->
+      <div class="timeline" role="list">
+
+        <!-- ── 2019 (sinistra) ── -->
+        <div class="timeline-item tl-left fade-up" role="listitem">
+          <div class="tl-body">
+            <span class="tl-year">2019</span>
+            <h3 class="tl-heading">Piano Strategico Sostenibilità</h3>
+            <p>
+              Approvazione del primo Piano Strategico di Sostenibilità 2019–2025,
+              con obiettivi quantitativi per tutte e sei le aree ESG.
+            </p>
+          </div>
+        </div>
+
+        <!-- ── 2020 (destra) ── -->
+        <div class="timeline-item tl-right fade-up" role="listitem">
+          <div class="tl-body">
+            <span class="tl-year">2020</span>
+            <h3 class="tl-heading">Certificazione Benessere Animale</h3>
+            <p>
+              Tutti gli allevamenti diretti ottengono la certificazione SQNBA
+              (Sistema di Qualità Nazionale Benessere Animale).
+            </p>
+          </div>
+        </div>
+
+        <!-- ── 2021 (sinistra) ── -->
+        <div class="timeline-item tl-left fade-up" role="listitem">
+          <div class="tl-body">
+            <span class="tl-year">2021</span>
+            <h3 class="tl-heading">Primo Report ESG Pubblicato</h3>
+            <p>
+              Prima rendicontazione di sostenibilità conforme agli standard GRI,
+              con audit indipendente da parte di un ente terzo certificato.
+            </p>
+          </div>
+        </div>
+
+        <!-- ── 2022 (destra) ── -->
+        <div class="timeline-item tl-right fade-up" role="listitem">
+          <div class="tl-body">
+            <span class="tl-year">2022</span>
+            <h3 class="tl-heading">-15% Emissioni CO₂ (Scope 1&amp;2)</h3>
+            <p>
+              Raggiunto l'obiettivo intermedio grazie all'installazione di
+              impianti fotovoltaici e pompe di calore negli stabilimenti.
+            </p>
+          </div>
+        </div>
+
+        <!-- ── 2023 (sinistra) ── -->
+        <div class="timeline-item tl-left fade-up" role="listitem">
+          <div class="tl-body">
+            <span class="tl-year">2023</span>
+            <h3 class="tl-heading">70% Energia Rinnovabile</h3>
+            <p>
+              Il Gruppo copre il 70% del proprio fabbisogno energetico con fonti
+              rinnovabili, superando l'obiettivo prefissato del 60%.
+            </p>
+          </div>
+        </div>
+
+      </div><!-- /.timeline -->
+    </div><!-- /.container -->
+  </section>
+
+
+  <!-- ================================================================
+       SEZIONE DOWNLOAD REPORT ESG
+       Le card vengono generate DINAMICAMENTE da JavaScript tramite
+       la funzione renderReports() definita in js/main.js.
+
+       L'array REPORTS in main.js contiene i metadati di ogni report
+       (titolo, anno, descrizione, URL del PDF sul sito Amadori).
+       renderReports() legge quell'array e inietta l'HTML delle card
+       nel contenitore #reportsGrid tramite innerHTML.
+
+       Il pulsante "Scarica PDF" di ogni card chiama downloadReport():
+       questa funzione recupera il PDF via fetch(), lo converte in un
+       Blob locale e forza il salvataggio sul dispositivo dell'utente.
+  ================================================================ -->
+  <section id="report" aria-labelledby="report-title">
+    <div class="container">
+
+      <div class="section-header fade-up">
+        <span class="section-tag">Trasparenza &amp; Dati</span>
+        <h2 id="report-title">Report di Sostenibilità</h2>
+        <p class="section-intro">
+          Scarica i nostri report ESG annuali. Ogni documento è redatto secondo
+          gli standard internazionali GRI e verificato da enti terzi indipendenti.
+        </p>
+      </div>
+
+      <!--
+        Target di renderReports(): JavaScript inietta qui le card.
+        Il tag <noscript> mostra un fallback se JS è disabilitato.
+      -->
+      <div
+        class="reports-grid"
+        id="reportsGrid"
+        role="list"
+        aria-label="Lista report ESG scaricabili"
+      >
+        <noscript>
+          <p class="noscript-msg">
+            Per visualizzare i report disponibili è necessario abilitare JavaScript.
+          </p>
+        </noscript>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       BANNER IMPEGNO 2030
+       Sezione ad alto contrasto con sfondo verde scuro.
+       Mostra i 4 macro-obiettivi di lungo periodo del Gruppo.
+  ================================================================ -->
+  <section id="impegno" aria-labelledby="impegno-title">
+    <div class="container">
+
+      <div class="impegno-content fade-up">
+        <span class="section-tag section-tag--light">Visione a lungo termine</span>
+
+        <h2 id="impegno-title" class="impegno-title">
+          Il Nostro Impegno verso il 2030
+        </h2>
+
+        <p class="impegno-subtitle">
+          Obiettivi ambiziosi e misurabili per contribuire agli SDGs
+          (Sustainable Development Goals) delle Nazioni Unite.
+        </p>
+
+        <!-- Griglia degli obiettivi al 2030 -->
+        <div class="goals-grid" role="list">
+
+          <div class="goal-item fade-up" role="listitem">
+            <span class="goal-number">-50%</span>
+            <span class="goal-label">Emissioni di CO₂<br />rispetto al 2019</span>
+          </div>
+
+          <div class="goal-item fade-up" role="listitem">
+            <span class="goal-number">100%</span>
+            <span class="goal-label">Energia da fonti<br />rinnovabili</span>
+          </div>
+
+          <div class="goal-item fade-up" role="listitem">
+            <span class="goal-number">Zero</span>
+            <span class="goal-label">Rifiuti in discarica<br />dalla produzione</span>
+          </div>
+
+          <div class="goal-item fade-up" role="listitem">
+            <span class="goal-number">+20%</span>
+            <span class="goal-label">Donne in ruoli<br />di leadership</span>
+          </div>
+
+        </div>
+
+        <a href="#report" class="btn btn-outline">Consulta tutti i Report</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       FOOTER
+       Struttura a 4 colonne: brand + social, link rapidi,
+       documenti, contatti. Barra inferiore con copyright.
+       JavaScript aggiorna l'anno automaticamente via #currentYear.
+  ================================================================ -->
+  <footer id="footer" role="contentinfo">
+    <div class="footer-container">
+
+      <!-- Colonna 1: brand + tagline + social -->
+      <div class="footer-brand">
+        <a href="#hero" class="footer-logo" aria-label="Gruppo Amadori – torna all'inizio">
+          <span class="logo-icon" aria-hidden="true">A</span>
+          <span class="logo-text">Amadori</span>
+        </a>
+        <p class="footer-tagline">
+          Nutrire l'Italia con responsabilità,<br />
+          prendersi cura del futuro del pianeta.
+        </p>
+        <!-- Social links – href="#" è placeholder, sostituire con URL reali -->
+        <div class="social-links" aria-label="Profili social Amadori">
+          <a href="#" class="social-link" aria-label="Amadori su LinkedIn" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                 viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2
+                       2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Amadori su YouTube" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                 viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4
+                       s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1
+                       12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54
+                       C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0
+                       1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+              <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"
+                       fill="white"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Colonna 2: navigazione rapida -->
+      <nav class="footer-nav" aria-label="Link rapidi">
+        <h4 class="footer-nav-title">Esplora</h4>
+        <ul role="list">
+          <li><a href="#pilastri">Pilastri ESG</a></li>
+          <li><a href="#timeline">Traguardi</a></li>
+          <li><a href="#report">Report &amp; Dati</a></li>
+          <li><a href="#impegno">Impegno 2030</a></li>
+        </ul>
+      </nav>
+
+      <!-- Colonna 3: documenti ufficiali -->
+      <nav class="footer-nav" aria-label="Documenti ufficiali">
+        <h4 class="footer-nav-title">Documenti</h4>
+        <ul role="list">
+          <li><a href="#">Politica Ambientale</a></li>
+          <li><a href="#">Codice Etico</a></li>
+          <li><a href="#">Policy Benessere Animale</a></li>
+          <li><a href="#">Bilancio Sociale</a></li>
+        </ul>
+      </nav>
+
+      <!-- Colonna 4: contatti -->
+      <div class="footer-contact">
+        <h4 class="footer-nav-title">Contatti</h4>
+        <address>
+          <p>
+            Gruppo Amadori S.p.A.<br />
+            Via Correcchio, 3<br />
+            47122 Forlì (FC), Italia
+          </p>
+          <p>
+            <a href="mailto:sostenibilita@amadori.it">
+              sostenibilita@amadori.it
+            </a>
+          </p>
+        </address>
+      </div>
+
+    </div><!-- /.footer-container -->
+
+    <!-- Barra copyright in fondo -->
+    <div class="footer-bottom">
+      <p class="footer-copyright">
+        <!-- #currentYear viene aggiornato da JS in main.js -->
+        &copy; <span id="currentYear"></span> Gruppo Amadori S.p.A. —
+        Tutti i diritti riservati.
+        <span class="footer-note">
+          Prototipo sviluppato per tesi universitaria.
+        </span>
+      </p>
+      <nav aria-label="Link legali">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">Note Legali</a>
+      </nav>
+    </div>
+
+  </footer>
+
+
+  <!-- ================================================================
+       Script caricato in fondo al body (best practice performance):
+       il parser HTML ha già costruito il DOM prima dell'esecuzione.
+  ================================================================ -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>
