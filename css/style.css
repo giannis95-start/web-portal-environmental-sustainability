@@ -1,0 +1,1247 @@
+/* =============================================================
+   AMADORI SOSTENIBILITÀ — style.css
+   Foglio di stile principale della pagina di sostenibilità.
+
+   INDICE:
+   1.  Variabili CSS (custom properties  / design tokens)
+   2.  Reset & base
+   3.  Tipografia
+   4.  Utilità (container, section-header, tag)
+   5.  Pulsanti (btn, btn-primary, btn-outline, btn-download)
+   6.  Navbar
+   7.  Sezione Hero
+   8.  Statistiche hero (stat-card)
+   9.  Pilastri ESG (pillar-card)
+   10. Timeline traguardi
+   11. Report ESG (report-card)
+   12. Banner Impegno 2030
+   13. Footer
+   14. Animazioni (fade-up, hover)
+   15. Media queries – breakpoint 768px (mobile)
+   ============================================================= */
+
+
+/* ─────────────────────────────────────────────────────────────
+   1. VARIABILI CSS
+   Centralizzate su :root per coerenza e facilità di manutenzione.
+   Cambiare un colore qui lo aggiorna sull'intera pagina.
+───────────────────────────────────────────────────────────── */
+:root {
+  /* Palette colori brand */
+  --rosso:        #c0141c;   /* Rosso Amadori – CTA, accenti */
+  --rosso-scuro:  #8e0e14;   /* Hover del rosso */
+  --verde:        #3a6b35;   /* Verde sostenibilità – titoli, icone */
+  --verde-scuro:  #2a4f26;   /* Hover del verde, sfondo impegno */
+  --crema:        #f7f3ec;   /* Sfondo principale – caldo e leggibile */
+  --crema-scura:  #ede8df;   /* Sfondo alternato sezioni */
+  --carbone:      #1e1e1e;   /* Testo principale */
+  --grigio:       #6b6b6b;   /* Testo secondario / descrizioni */
+  --bianco:       #ffffff;
+  --grigio-chiaro:#e8e4dd;   /* Bordi, divisori */
+
+  /* Tipografia */
+  --font-serif:   'DM Serif Display', Georgia, serif;
+  --font-sans:    'DM Sans', system-ui, sans-serif;
+
+  /* Spaziature (scala 8px) */
+  --sp-1:   0.5rem;   /*  8px */
+  --sp-2:   1rem;     /* 16px */
+  --sp-3:   1.5rem;   /* 24px */
+  --sp-4:   2rem;     /* 32px */
+  --sp-6:   3rem;     /* 48px */
+  --sp-8:   4rem;     /* 64px */
+  --sp-12:  6rem;     /* 96px */
+
+  /* Layout */
+  --max-width:    1140px;    /* larghezza massima del container */
+  --nav-height:   72px;      /* altezza navbar fissa */
+  --radius:       12px;      /* arrotondamento card */
+  --radius-sm:    6px;
+
+  /* Ombra card */
+  --shadow-sm:  0 2px 8px rgba(0,0,0,0.07);
+  --shadow-md:  0 6px 24px rgba(0,0,0,0.10);
+  --shadow-lg:  0 16px 48px rgba(0,0,0,0.14);
+
+  /* Transizioni */
+  --transition: 0.3s ease;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   2. RESET & BASE
+   Box-model unificato e normalizzazione cross-browser essenziale.
+───────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;  /* padding e border inclusi nella larghezza */
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth; /* smooth scroll per i link ancora */
+  font-size: 16px;
+  /* Compensa l'altezza della navbar fissa negli anchor jump */
+  scroll-padding-top: var(--nav-height);
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--carbone);
+  background-color: var(--crema);
+  -webkit-font-smoothing: antialiased;   /* rendering testo migliore su Mac */
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Link – eredita il colore dal genitore, nessun underline di default */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Immagini responsive per default */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Liste semantiche senza stile visivo (rimane l'ARIA) */
+ul[role="list"] {
+  list-style: none;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   3. TIPOGRAFIA
+   Gerarchia visiva basata sul sistema di font scelto.
+───────────────────────────────────────────────────────────── */
+
+/* Titoli in DM Serif Display */
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  line-height: 1.2;
+  color: var(--carbone);
+}
+
+h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); }
+h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); }
+h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); }
+
+/* clamp() = dimensione fluida tra min e max in base alla viewport */
+
+p {
+  color: var(--grigio);
+  max-width: 68ch; /* ~68 caratteri per riga: ottimale per la lettura */
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   4. UTILITÀ
+   Classi riutilizzabili: container, header di sezione, tag etichetta.
+───────────────────────────────────────────────────────────── */
+
+/* Container centrato con padding laterale su mobile */
+.container {
+  max-width: var(--max-width);
+  margin-inline: auto;      /* shorthand per margin-left + margin-right */
+  padding-inline: var(--sp-4);
+}
+
+/* Header comune a ogni sezione: tag + titolo h2 + intro */
+.section-header {
+  text-align: center;
+  max-width: 700px;
+  margin-inline: auto;
+  margin-bottom: var(--sp-8);
+}
+
+.section-header h2 {
+  color: var(--verde);
+  margin-block: var(--sp-2);  /* shorthand per margin-top + margin-bottom */
+}
+
+.section-intro {
+  font-size: 1.05rem;
+  margin-inline: auto;
+}
+
+/* Etichetta colorata sopra il titolo h2 */
+.section-tag {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rosso);
+  background: rgba(192, 20, 28, 0.08);
+  padding: 0.3em 0.9em;
+  border-radius: 999px;       /* pillola */
+  margin-bottom: var(--sp-2);
+}
+
+/* Variante chiara per sfondi scuri (sezione impegno 2030) */
+.section-tag--light {
+  color: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.15);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   5. PULSANTI
+   Sistema di pulsanti riutilizzabili.
+───────────────────────────────────────────────────────────── */
+
+/* Base comune */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.75em 1.8em;
+  border-radius: var(--radius-sm);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: background var(--transition),
+              color var(--transition),
+              transform var(--transition),
+              box-shadow var(--transition);
+  white-space: nowrap;
+}
+
+/* Pulsante rosso pieno – CTA principale */
+.btn-primary {
+  background: var(--rosso);
+  color: var(--bianco);
+  border-color: var(--rosso);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: var(--rosso-scuro);
+  border-color: var(--rosso-scuro);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Pulsante contorno bianco – su sfondi scuri */
+.btn-outline {
+  background: transparent;
+  color: var(--bianco);
+  border-color: rgba(255,255,255,0.6);
+}
+
+.btn-outline:hover,
+.btn-outline:focus-visible {
+  background: rgba(255,255,255,0.12);
+  border-color: var(--bianco);
+  transform: translateY(-2px);
+}
+
+/* Pulsante download nelle card report */
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--verde);
+  border: 2px solid var(--verde);
+  padding: 0.55em 1.2em;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition),
+              color var(--transition),
+              transform var(--transition);
+  width: 100%;                /* occupa tutta la larghezza della card */
+  justify-content: center;
+  margin-top: auto;           /* spinge il pulsante in fondo alla card */
+}
+
+.btn-download:hover,
+.btn-download:focus-visible {
+  background: var(--verde);
+  color: var(--bianco);
+  transform: translateY(-2px);
+}
+
+/* Focus visibile per accessibilità da tastiera */
+:focus-visible {
+  outline: 3px solid var(--verde);
+  outline-offset: 3px;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   6. NAVBAR
+   Barra fissa, si sovrappone al contenuto (z-index alto).
+   Classe .scrolled aggiunta da JS dopo 80px di scroll.
+───────────────────────────────────────────────────────────── */
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  z-index: 1000;               /* sopra tutto il resto */
+  transition: background var(--transition), box-shadow var(--transition);
+  /* Sfondo trasparente di default (hero visibile sotto) */
+  background: transparent;
+}
+
+/* Stato attivo dopo lo scroll – sfondo solido con ombra */
+#navbar.scrolled {
+  background: var(--bianco);
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-container {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--sp-4);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ── Logo ── */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  color: var(--bianco);
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: color var(--transition);
+}
+
+#navbar.scrolled .nav-logo {
+  color: var(--carbone);
+}
+
+/* Cerchio con la "A" di Amadori */
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--rosso);
+  color: var(--bianco);
+  border-radius: 8px;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* ── Link di navigazione ── */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  list-style: none;
+}
+
+.nav-link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+  transition: color var(--transition);
+  position: relative;
+}
+
+#navbar.scrolled .nav-link {
+  color: var(--carbone);
+}
+
+/* Sottolineatura animata al hover */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--rosso);
+  transition: width var(--transition);
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  width: 100%;
+}
+
+.nav-link:hover { color: var(--bianco); }
+#navbar.scrolled .nav-link:hover { color: var(--rosso); }
+
+/* ── CTA nella navbar ── */
+.nav-cta {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--bianco) !important;
+  background: var(--rosso);
+  padding: 0.45em 1.1em;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition), transform var(--transition);
+}
+
+.nav-cta:hover,
+.nav-cta:focus-visible {
+  background: var(--rosso-scuro);
+  transform: translateY(-1px);
+}
+
+/* ── Hamburger button (nascosto su desktop) ── */
+.nav-toggle {
+  display: none;              /* visibile solo su mobile via media query */
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--sp-1);
+}
+
+.burger-bar {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--bianco);
+  border-radius: 2px;
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+#navbar.scrolled .burger-bar { background: var(--carbone); }
+
+/* Animazione X quando il menu è aperto */
+.nav-toggle[aria-expanded="true"] .burger-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] .burger-bar:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle[aria-expanded="true"] .burger-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   7. SEZIONE HERO
+   Occupa almeno tutta la viewport (100svh).
+   Sfondo: gradiente CSS multistrato con toni verde scuro.
+   Contenuto centrato verticalmente con flexbox.
+───────────────────────────────────────────────────────────── */
+#hero {
+  position: relative;
+  min-height: 100svh;           /* svh = safe viewport height (mobile) */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: var(--nav-height);
+  padding-inline: var(--sp-4);
+  padding-bottom: 0;
+  overflow: hidden;
+
+  /* Sfondo: gradiente che simula paesaggio/campi
+     Sostituire con: background-image: url('../assets/hero-bg.jpg');
+     insieme all'overlay per foto reale */
+  background:
+    linear-gradient(
+      175deg,
+      rgba(20, 35, 20, 0.92) 0%,
+      rgba(42, 79, 38, 0.75) 60%,
+      rgba(30, 30, 30, 0.95) 100%
+    ),
+    linear-gradient(
+      135deg,
+      #1a2e1a 0%,
+      #2d4a2d 40%,
+      #1e2810 70%,
+      #0e1a0e 100%
+    );
+}
+
+/* Overlay semitrasparente aggiuntivo (usato se si aggiunge un'immagine) */
+.hero-overlay {
+  position: absolute;
+  inset: 0;                    /* shorthand per top/right/bottom/left: 0 */
+  background: rgba(0,0,0,0.15);
+  pointer-events: none;
+}
+
+/* Pattern decorativo in basso (onde/curve) */
+#hero::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: var(--crema);
+  /* Forma a onda con clip-path */
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+
+/* ── Contenuto testuale del hero ── */
+.hero-content {
+  text-align: center;
+  max-width: 800px;
+  position: relative;          /* sopra l'overlay */
+  z-index: 1;
+  padding-bottom: var(--sp-8);
+}
+
+.hero-label {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: var(--sp-2);
+}
+
+.hero-title {
+  color: var(--bianco);
+  margin-bottom: var(--sp-3);
+  text-shadow: 0 2px 16px rgba(0,0,0,0.3);
+}
+
+/* Il corsivo <em> usa il font serif italic */
+.hero-title em {
+  color: rgba(255,255,255,0.85);
+  font-style: italic;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: rgba(255,255,255,0.75);
+  max-width: 60ch;
+  margin-inline: auto;
+  margin-bottom: var(--sp-4);
+  line-height: 1.7;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   8. STATISTICHE HERO (stat-card)
+   Griglia di 4 KPI numerici in fondo al hero.
+───────────────────────────────────────────────────────────── */
+.hero-stats {
+  width: 100%;
+  max-width: var(--max-width);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-2);
+  position: relative;
+  z-index: 1;
+  padding-bottom: var(--sp-6);
+}
+
+.stat-card {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);    /* effetto vetro smerigliato */
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: var(--radius);
+  padding: var(--sp-3) var(--sp-2);
+  text-align: center;
+  transition: transform var(--transition), background var(--transition);
+}
+
+.stat-card:hover {
+  background: rgba(255,255,255,0.14);
+  transform: translateY(-4px);
+}
+
+.stat-number {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  color: var(--bianco);
+  line-height: 1.1;
+  margin-bottom: 0.4rem;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.4;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   9. PILASTRI ESG
+   Sezione su sfondo crema, griglia 3 × 2 di card.
+───────────────────────────────────────────────────────────── */
+#pilastri {
+  padding-block: var(--sp-12);
+  background: var(--crema);
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--sp-4);
+}
+
+/* Griglia responsive: 3 colonne su desktop */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-3);
+}
+
+/* ── Card singola pilastro ── */
+.pillar-card {
+  background: var(--bianco);
+  border-radius: var(--radius);
+  padding: var(--sp-4);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  border: 1px solid var(--grigio-chiaro);
+  transition: transform var(--transition),
+              box-shadow var(--transition),
+              border-color var(--transition);
+}
+
+.pillar-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--verde);
+}
+
+/* ── Icone colorata in cima alla card ── */
+.card-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Variante verde per pilastri ambientali */
+.card-icon--green {
+  background: rgba(58, 107, 53, 0.1);
+  color: var(--verde);
+}
+
+/* Variante rossa per pilastri sociali */
+.card-icon--red {
+  background: rgba(192, 20, 28, 0.08);
+  color: var(--rosso);
+}
+
+.card-title {
+  color: var(--carbone);
+  font-size: 1.2rem;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  flex: 1;                     /* occupa lo spazio residuo per allineare il KPI */
+}
+
+/* Badge KPI in fondo alla card */
+.card-kpi {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--verde);
+  background: rgba(58, 107, 53, 0.08);
+  padding: 0.3em 0.8em;
+  border-radius: 999px;
+  border: 1px solid rgba(58, 107, 53, 0.2);
+  margin-top: auto;
+  width: fit-content;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   10. TIMELINE TRAGUARDI
+   Sezione su sfondo bianco con linea verticale centrale.
+   I nodi alternano posizione sinistra/destra.
+───────────────────────────────────────────────────────────── */
+#timeline {
+  padding-block: var(--sp-12);
+  background: var(--bianco);
+}
+
+/* Contenitore della linea: ::before disegna la riga verticale */
+.timeline {
+  position: relative;
+  max-width: 860px;
+  margin-inline: auto;
+  padding-block: var(--sp-4);
+}
+
+/* Linea verticale centrale */
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--verde) 5%,
+    var(--verde) 95%,
+    transparent
+  );
+  transform: translateX(-50%);
+}
+
+/* ── Item della timeline (un evento) ── */
+.timeline-item {
+  position: relative;
+  width: calc(50% - 2.5rem);  /* metà larghezza meno spazio per il punto */
+  margin-bottom: var(--sp-6);
+}
+
+/* Punto decorativo sul centro-linea */
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  top: 1rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--rosso);
+  border: 3px solid var(--bianco);
+  box-shadow: 0 0 0 2px var(--rosso);
+}
+
+/* ── Evento a sinistra ── */
+.tl-left {
+  margin-left: 0;
+  text-align: right;
+}
+
+/* Il punto è a destra del body, sul centro-linea */
+.tl-left::after {
+  right: calc(-2.5rem - 7px);  /* si posiziona sul centro della linea */
+}
+
+/* ── Evento a destra ── */
+.tl-right {
+  margin-left: calc(50% + 2.5rem);
+  text-align: left;
+}
+
+/* Il punto è a sinistra del body, sul centro-linea */
+.tl-right::after {
+  left: calc(-2.5rem - 7px);
+}
+
+/* ── Contenuto testuale del nodo ── */
+.tl-body {
+  background: var(--bianco);
+  border: 1px solid var(--grigio-chiaro);
+  border-radius: var(--radius);
+  padding: var(--sp-3);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.tl-body:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.tl-year {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--rosso);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: var(--sp-1);
+}
+
+.tl-heading {
+  font-size: 1rem;
+  color: var(--verde-scuro);
+  margin-bottom: 0.4rem;
+}
+
+.tl-body p {
+  font-size: 0.88rem;
+  max-width: none;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   11. SEZIONE REPORT ESG
+   Sfondo crema, griglia di card generate da JS.
+   Ogni card ha: badge anno, titolo, descrizione, metadati, CTA.
+───────────────────────────────────────────────────────────── */
+#report {
+  padding-block: var(--sp-12);
+  background: var(--crema-scura);
+}
+
+/* Griglia dei report: massimo 3 per riga */
+.reports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--sp-3);
+}
+
+/* ── Card singolo report (generata via JS) ── */
+.report-card {
+  background: var(--bianco);
+  border-radius: var(--radius);
+  padding: var(--sp-4);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--grigio-chiaro);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.report-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Badge anno nell'angolo superiore */
+.report-year-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--bianco);
+  background: var(--verde);
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  letter-spacing: -0.02em;
+}
+
+.report-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.report-title {
+  font-size: 1.05rem;
+  color: var(--carbone);
+}
+
+.report-desc {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  max-width: none;
+}
+
+/* Metadati: pagine e dimensione file */
+.report-meta {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+  margin-top: var(--sp-1);
+}
+
+.report-meta span {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--verde);
+  background: rgba(58,107,53,0.08);
+  padding: 0.2em 0.7em;
+  border-radius: 999px;
+}
+
+/* Messaggio di fallback se JS è disabilitato */
+.noscript-msg {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: var(--sp-6);
+  color: var(--grigio);
+  font-style: italic;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   12. BANNER IMPEGNO 2030
+   Sfondo verde scuro con testo bianco.
+   Quattro obiettivi disposti in griglia 4 colonne.
+───────────────────────────────────────────────────────────── */
+#impegno {
+  background: var(--verde-scuro);
+  padding-block: var(--sp-12);
+  /* Texture sottile con gradiente radiale */
+  background-image:
+    radial-gradient(ellipse at 80% 20%, rgba(58,107,53,0.4) 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 80%, rgba(42,79,38,0.6) 0%, transparent 50%);
+  background-color: var(--verde-scuro);
+}
+
+.impegno-content {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--sp-4);
+  text-align: center;
+}
+
+.impegno-title {
+  color: var(--bianco);
+  margin-block: var(--sp-2) var(--sp-3);
+}
+
+.impegno-subtitle {
+  color: rgba(255,255,255,0.75);
+  font-size: 1.05rem;
+  max-width: 60ch;
+  margin-inline: auto;
+  margin-bottom: var(--sp-8);
+}
+
+/* Griglia degli obiettivi 2030 */
+.goals-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-6);
+}
+
+.goal-item {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius);
+  padding: var(--sp-4) var(--sp-2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-1);
+  transition: background var(--transition), transform var(--transition);
+}
+
+.goal-item:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-4px);
+}
+
+.goal-number {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  color: var(--bianco);
+  line-height: 1;
+}
+
+.goal-label {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.4;
+  text-align: center;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   13. FOOTER
+   Sfondo carbone (quasi nero), testo chiaro.
+   Layout a 4 colonne + barra inferiore copyright.
+───────────────────────────────────────────────────────────── */
+#footer {
+  background: var(--carbone);
+  color: rgba(255,255,255,0.7);
+}
+
+.footer-container {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding: var(--sp-12) var(--sp-4) var(--sp-6);
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: var(--sp-6);
+}
+
+/* ── Brand (colonna sinistra) ── */
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  color: var(--bianco);
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: var(--sp-2);
+}
+
+.footer-tagline {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.55);
+  max-width: 28ch;
+  margin-bottom: var(--sp-3);
+}
+
+.social-links {
+  display: flex;
+  gap: var(--sp-2);
+}
+
+.social-link {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition), color var(--transition);
+}
+
+.social-link:hover {
+  background: var(--rosso);
+  color: var(--bianco);
+}
+
+/* ── Colonne di navigazione nel footer ── */
+.footer-nav-title {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bianco);
+  margin-bottom: var(--sp-3);
+}
+
+.footer-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.footer-nav a,
+.footer-contact a {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.6);
+  transition: color var(--transition);
+}
+
+.footer-nav a:hover,
+.footer-contact a:hover {
+  color: var(--bianco);
+}
+
+.footer-contact address {
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  font-size: 0.88rem;
+}
+
+/* ── Barra copyright ── */
+.footer-bottom {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding: var(--sp-3) var(--sp-4);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.footer-copyright {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.4);
+  max-width: none;
+}
+
+.footer-note {
+  display: block;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.28);
+  margin-top: 0.2rem;
+}
+
+.footer-bottom nav {
+  display: flex;
+  gap: var(--sp-3);
+}
+
+.footer-bottom nav a {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.4);
+  transition: color var(--transition);
+}
+
+.footer-bottom nav a:hover { color: rgba(255,255,255,0.8); }
+
+
+/* ─────────────────────────────────────────────────────────────
+   14. ANIMAZIONI
+
+   .fade-up  →  classe iniziale: elemento invisibile e abbassato.
+   .visible  →  classe aggiunta da IntersectionObserver in JS:
+                l'elemento si sposta nella posizione originale e
+                diventa visibile con una transizione fluida.
+
+   Ogni elemento con .fade-up che entra nella viewport riceve
+   automaticamente la classe .visible dall'Observer in main.js.
+───────────────────────────────────────────────────────────── */
+
+/* Stato iniziale: invisibile, abbassato di 30px */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Stato animato: visibile e nella posizione normale */
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ritardo progressivo per gli elementi in griglia
+   (staggered animation: le card appaiono in sequenza) */
+.fade-up:nth-child(1) { transition-delay: 0ms;   }
+.fade-up:nth-child(2) { transition-delay: 80ms;  }
+.fade-up:nth-child(3) { transition-delay: 160ms; }
+.fade-up:nth-child(4) { transition-delay: 240ms; }
+.fade-up:nth-child(5) { transition-delay: 320ms; }
+.fade-up:nth-child(6) { transition-delay: 400ms; }
+
+/* Rispetta la preferenza utente "reduced motion":
+   disabilita le animazioni per chi ha problemi vestibolari */
+@media (prefers-reduced-motion: reduce) {
+  .fade-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   15. MEDIA QUERIES — MOBILE (≤ 768px)
+   Tutte le griglie collassano a colonna singola.
+   La navbar mostra il menu a scomparsa.
+───────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+  /* ── Navbar mobile ── */
+
+  /* Mostra il pulsante hamburger */
+  .nav-toggle {
+    display: flex;
+  }
+
+  /* Il menu diventa un pannello che scende dall'alto */
+  .nav-links {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    background: var(--bianco);
+    flex-direction: column;
+    align-items: center;
+    gap: var(--sp-3);
+    padding: var(--sp-4);
+    box-shadow: var(--shadow-md);
+    /* Nascosto fuori schermo */
+    transform: translateY(-110%);
+    transition: transform var(--transition);
+    z-index: 999;
+  }
+
+  /* Quando è aperto (classe .open aggiunta da JS) */
+  .nav-links.open {
+    transform: translateY(0);
+  }
+
+  /* I link diventano scuri su sfondo bianco */
+  .nav-links .nav-link { color: var(--carbone); }
+  .nav-links .nav-link:hover { color: var(--rosso); }
+
+  /* ── Hero mobile ── */
+  .hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* ── Pilastri: 1 colonna ── */
+  .pillars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* ── Timeline mobile: lista lineare sinistra ──
+     La linea centrale scompare, i nodi si allineano a sinistra */
+  .timeline::before {
+    left: 18px;
+    transform: none;
+  }
+
+  .timeline-item {
+    width: 100%;
+    margin-left: 0 !important;
+    text-align: left !important;
+    padding-left: 3rem;
+  }
+
+  /* Il punto è sempre a sinistra */
+  .tl-left::after,
+  .tl-right::after {
+    left: 12px;
+    right: auto;
+  }
+
+  /* ── Report: 1 colonna ── */
+  .reports-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* ── Obiettivi 2030: 2 × 2 ── */
+  .goals-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* ── Footer: colonna singola ── */
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: var(--sp-6);
+    padding-block: var(--sp-8);
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-bottom nav {
+    justify-content: center;
+  }
+}
+
+/* Breakpoint extra-small per schermi molto piccoli (< 400px) */
+@media (max-width: 400px) {
+  .hero-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .goals-grid {
+    grid-template-columns: 1fr;
+  }
+}
